@@ -27,7 +27,7 @@ parser = WebhookParser(channel_secret)
 handler = WebhookHandler(channel_secret)
 
 app = Flask(__name__)
-
+# build origin machine
 machine = {}
 machine["0"] = TocMachine(
             states=["home", "mapinfo", "information"],
@@ -52,6 +52,7 @@ machine["0"] = TocMachine(
             auto_transitions=False,
             show_conditions=False,
         )
+#recieve message from line
 @app.route("/callback", methods=["POST"])
 def callback():
     signature = request.headers["X-Line-Signature"]
@@ -65,10 +66,11 @@ def callback():
     except InvalidSignatureError:
         abort(400)
     return "OK"
-
+#deal with the message,according to different user state has different action
 @handler.add(MessageEvent,message=TextMessage)
 def handle_message(event):
     user_id = event.source.user_id
+    #create new machine for user
     if user_id not in machine:
         machine[user_id] = TocMachine(
             states=["home", "mapinfo", "information"],
