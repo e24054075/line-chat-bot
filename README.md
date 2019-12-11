@@ -17,3 +17,6 @@
 1.home:目錄，介紹指令與功能<br>
 2.mapinfo:活動攻略提供區，輸入E1~E6就會提供這次海域的攻略圖<br>
 3.information:遊戲情報網站提供區，提供各個情報網站網址<br>
+
+## QRCode
+![](https://github.com/e24054075/line-chat-bot/blob/master/img/qrcode.png)
